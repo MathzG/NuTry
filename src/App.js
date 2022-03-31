@@ -17,24 +17,27 @@ function App() {
       window.location.pathname = "/login";
     });
   };
+
   return (
-  <Router>
-    <nav>
-    {!isAuth ? (
+    <Router>
+      <nav>
+        <Link to="/"> Inicio </Link>
+
+        {!isAuth ? (
           <Link to="/login"> Login </Link>
         ) : (
           <>
-            <Link to="/createpost"> Create Post </Link>
-            <button onClick={signUserOut}> Log Out</button>
+            <Link to="/createpost"> Criar Post </Link>
+            <button onClick={signUserOut}> Deslogar</button>
           </>
         )}
       </nav>
       <Routes>
-      <Route path="/" element={<Home isAuth={isAuth} />} />
-      <Link to="/createpost"> Create Post </Link>
-      <Link to="/login"> Login </Link>
-    </Routes>
-  </Router>
+        <Route path="/" element={<Home isAuth={isAuth} />} />
+        <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
+        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+      </Routes>
+    </Router>
   );
 }
 
